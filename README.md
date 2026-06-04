@@ -49,7 +49,7 @@ Runtime dependencies (installed automatically):
 ### As a CLI tool (recommended)
 
 ```bash
-uv tool install git+https://github.com/<you>/org-to-xlsx
+uv tool install git+https://github.com/avkoval/org-to-xlsx
 org-to-xlsx path/to/file.org
 ```
 
@@ -58,7 +58,7 @@ After this, `org-to-xlsx` is available globally on your `PATH`.
 ### From a clone
 
 ```bash
-git clone https://github.com/<you>/org-to-xlsx
+git clone https://github.com/avkoval/org-to-xlsx
 cd org-to-xlsx
 uv sync
 uv run org-to-xlsx path/to/file.org
@@ -67,7 +67,7 @@ uv run org-to-xlsx path/to/file.org
 ### With `pip`
 
 ```bash
-pip install git+https://github.com/<you>/org-to-xlsx
+pip install git+https://github.com/avkoval/org-to-xlsx
 ```
 
 ## Usage
@@ -138,7 +138,7 @@ A heading with multiple tables produces multiple sheets, with `(2)`, `(3)`,
 ## Development
 
 ```bash
-git clone https://github.com/<you>/org-to-xlsx
+git clone https://github.com/avkoval/org-to-xlsx
 cd org-to-xlsx
 uv sync
 uv run org-to-xlsx --help
