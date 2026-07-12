@@ -33,6 +33,41 @@ explanatory text next to the data it describes.
 - **Sensible formatting.** Bold header row with light-blue fill, borders,
   text wrap, frozen header pane, auto-sized columns capped at 60 chars.
 - **Zero configuration.** Point it at an `.org` file, get an `.xlsx` back.
+- **Optional consolidation mode.** Adds a `Summary` sheet with per-chapter
+  totals when the source file requests it (see next section).
+
+## Consolidation mode (per-chapter totals + preserved MIN column)
+
+Add this directive anywhere near the top of the source `.org`:
+
+```
+#+CONSOLIDATE_TOTALS: Dev total
+```
+
+With the directive present, the tool prepends two sheets to the workbook:
+
+- **Summary** — one row per `** N. CODE — Name` chapter. For each chapter
+  the tool finds the first table row whose label contains the directive
+  value ("Dev total" above) and pulls the integer from the next cell. The
+  sheet has a `MIN` column that the user is expected to fill in with their
+  own estimate, plus formula-driven columns for the RG Simple Formula
+  multipliers (UUR 30 / 40 / 50 %) and a grand-total row.
+
+- **Legend** — formulas and column definitions.
+
+The `MIN` column is **preserved across regenerations**, keyed by chapter
+`Code`. Users can edit MIN in Excel, save, re-run the tool, and their
+values come back untouched even as Dev totals change.
+
+Without the directive the tool behaves exactly as before: pure per-table
+dumper with no Summary sheet.
+
+Additional CLI flag in this mode:
+
+```
+--rate NN     hourly rate for the cost columns on the Summary sheet
+              (default: 60)
+```
 
 ## Requirements
 
@@ -43,6 +78,8 @@ Runtime dependencies (installed automatically):
 
 - [`orgparse`](https://github.com/karlicoss/orgparse) — Org-mode parser
 - [`xlsxwriter`](https://github.com/jmcnamara/XlsxWriter) — XLSX generator
+- [`openpyxl`](https://openpyxl.readthedocs.io/) — reads existing xlsx to
+  preserve the user-edited MIN column in consolidation mode
 
 ## Installation
 

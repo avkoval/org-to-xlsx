@@ -7,6 +7,7 @@ authors = [{ name = "Oleksii Koval" }]
 dependencies = [
     "orgparse>=0.4.20231004",
     "xlsxwriter>=3.2.0",
+    "openpyxl>=3.1.2",
 ]
 
 [project.scripts]
